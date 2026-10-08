@@ -11,7 +11,11 @@ async function sendTelegram(env, text) {
 
 export default {
 	async fetch(request, env, ctx) {
-		const sent = await sendTelegram(env, "Hello from Scout!");
-		return new Response(sent ? "Message sent" : "Telegram error");
+		return new Response("Scout is running.");
+	},
+
+	async email(message, env, ctx) {
+		const subject = message.headers.get("subject") || "(no subject)";
+		await sendTelegram(env, `New email: ${subject}`);
 	},
 };

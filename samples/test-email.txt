@@ -1,0 +1,8 @@
+From: Test Alerts <alerts@example.com>
+To: scout@example.com
+Subject: New internship: PFE AI engineer at Example Corp
+Date: Thu, 08 Oct 2026 18:30:00 +0100
+Message-ID: <test-001@scout.local>
+Content-Type: text/plain; charset="utf-8"
+
+This is a fake job alert to test Scout.
