@@ -1,15 +1,17 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+// Send a text message to my Telegram chat.
+async function sendTelegram(env, text) {
+	const url = `https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage`;
+	const response = await fetch(url, {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text: text }),
+	});
+	return response.ok;
+}
 
 export default {
 	async fetch(request, env, ctx) {
-		return new Response("Hello World!");
+		const sent = await sendTelegram(env, "Hello from Scout!");
+		return new Response(sent ? "Message sent" : "Telegram error");
 	},
 };
